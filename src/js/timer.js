@@ -1,6 +1,7 @@
 const FOCUS = 'focus';
 const SHORT_BREAK = 'short-break';
 const LONG_BREAK = 'long-break';
+const IDLE = 'idle';
 
 const TIMERS = {
     [FOCUS]: .2 * 60,
@@ -14,11 +15,18 @@ const TIMER_LABELS = {
     [LONG_BREAK]: 'Long Break'
 };
 
+const TIMER_TITLES = {
+    [FOCUS]: 'Focus Time!',
+    [SHORT_BREAK]: 'Take a Short Break!',
+    [LONG_BREAK]: 'Take a Long Break!',
+};
+
 var currentLoop = 1;
 var isRunning = false;
 var startMoment = null;
+var defaultTitle = document.getElementsByTagName('title')[0].innerText;
 var currentPomodoro = () => {
-    return Math.abs(currentLoop / 8); // Takes 8 loops to completed a pomodoro
+    return Math.abs(currentLoop / 10); // Takes 8 loops to completed a pomodoro
 }
 
 /* INIT */
@@ -77,10 +85,12 @@ function finishTimer()
 
 function tickTimer()
 {
-    if (!isRunning)
-        return false;
-
     let maxTime = getCurrentTimer();
+    if (!isRunning){
+        updateUI(maxTime, 0);
+        return false;
+    }
+
     let currentTime = Math.abs((new Date().getTime() - startMoment.getTime()) / 1000); // Diff in seconds
     if (currentTime >= maxTime) {
         finishTimer();
@@ -91,17 +101,22 @@ function tickTimer()
 
 function updateUI(maxTime, currentTime)
 {
-    setRotation(timeToDeg(maxTime, currentTime));
-    let timer = secondsToTimer(maxTime - currentTime);
-    setTimerText(timer);
-    setTitle(`🕑 ${timer} - Focus Time!`);
-
-    let currentLoopProgress = timeToPercentual(maxTime, currentTime);
     let currentTimerID = getCurrentTimerIdentifier();
+    let timer = secondsToTimer(maxTime - currentTime);
+    let currentLoopProgress = timeToPercentual(maxTime, currentTime);
+
+    setRotation(timeToDeg(maxTime, currentTime));
+    setTimerText(timer);
+
+    if (isRunning)
+        setTitle(`🕑 ${timer} - ${TIMER_TITLES[currentTimerID]} | ${defaultTitle.trim()}`);
+    else
+        setTitle(defaultTitle);
+
     document.getElementsByClassName('timer')[0].classList = `timer ${currentTimerID}`;
     switch (currentTimerID) {
         case FOCUS:
-            if ((currentLoop + 1) % 8 == 0) {
+            if ((currentLoop + 1) % 10 == 0) {
                 document.getElementById('labelFocus2').style.setProperty('--fill', `${currentLoopProgress}%`);
                 document.getElementById('labelFocus2').classList = 'label active';
 
@@ -191,7 +206,7 @@ function playAlarm()
 // Getters
 function getCurrentTimerIdentifier()
 {
-    return currentLoop % 8 == 0 ? LONG_BREAK : (currentLoop % 2 === 0 ? SHORT_BREAK : FOCUS);
+    return currentLoop % 10 == 0 ? LONG_BREAK : (currentLoop % 2 === 0 ? SHORT_BREAK : FOCUS);
 }
 
 function getCurrentTimer()

@@ -37,8 +37,9 @@ Neste projeto busco utilizar algumas tecnologias que não aplico tanto no dia-a-
 #### Etapa 1 [Atual]
 Nesta etapa será a criação da base geral da aplicação.
 - [x] Estrutura da aplicação NodeJS.
-- [ ] Sistema de timers para os períodos de tempo.
+- [x] Sistema de timers para os períodos de tempo.
 - [ ] Notificações e sons de alerta.
+- [ ] Layout
 
 #### Etapa 2
 Nesta etapa será expandida a aplicação, focando no gerenciamento de atividades.
