@@ -1,0 +1,27 @@
+.label {
+    --fill: 75%;
+    @apply text-base px-2 rounded shadow-lg bg-gray-400 border border-gray-500 text-white opacity-50;
+    transition: opacity ease .5s;
+    &.active {
+        @apply border-gray-500 opacity-100;
+        transition: transform ease .1s;
+        background: linear-gradient(to right, rgb(248, 113, 113) var(--fill), rgb(156, 163, 175) var(--fill));
+        &#labelShort {
+            background: linear-gradient(to right, #10B981 var(--fill), rgb(156, 163, 175) var(--fill));
+        }
+        &#labelLong {
+            background: linear-gradient(to right, #3B82F6 var(--fill), rgb(156, 163, 175) var(--fill));
+        }
+    }
+    &.completed {
+        @apply bg-red-400 border-red-500 opacity-50;
+        &#labelShort {
+            @apply bg-green-400 border-green-500;
+        }
+        &#labelLong {
+            @apply bg-blue-400 border-blue-500;
+        }
+    }
+
+    
+}

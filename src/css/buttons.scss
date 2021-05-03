@@ -1,0 +1,11 @@
+.bt {
+    @apply px-4 py-1 rounded shadow-lg border border-gray-200 text-gray-600 flex gap-1 items-center justify-center outline-none;
+
+    &.bt-red {
+        @apply border-red-200 bg-red-400 text-white hover:bg-red-500;
+    }
+
+    &.bt-sm {
+        @apply px-2 text-sm;
+    }
+}

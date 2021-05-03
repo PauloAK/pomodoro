@@ -1,0 +1,56 @@
+.timer {
+    --rotation: 0deg;
+    --border-size: 10px;
+    --dot-size: 15px;
+
+    --color: #F87171;
+    --shadow-color: #FEE2E2;
+
+    &.short-break {
+        --color: #10B981;
+        --shadow-color: #A7F3D0;
+    }
+    &.long-break {
+        --color: #3B82F6;
+        --shadow-color: #BFDBFE;
+    }
+
+    @apply relative flex items-center justify-center w-40 h-40;
+    .pie {
+        @apply absolute rounded-full shadow w-full h-full;
+        &.shadow {
+            background-color: var(--shadow-color);
+        }
+        &.active {
+            background: conic-gradient(var(--color) var(--rotation), transparent var(--rotation) 360deg);
+        }
+    }
+
+    .inner {
+        width: calc(100% - var(--border-size));
+        height: calc(100% - var(--border-size));
+        @apply absolute rounded-full bg-white flex flex-wrap flex-row items-stretch;
+        span {
+            @apply flex justify-center;
+            flex: 0 0 100%;
+        }
+        span:first-child {
+            @apply items-end text-2xl;
+        }
+    }
+
+    .marker {
+        transition: transform ease .1s, background-color ease .1s, border-color ease .1s;
+        transform: rotate(var(--rotation));
+        @apply relative w-full h-full z-10;
+        .dot {
+            left: calc(50% - (var(--dot-size)/2));
+            top: calc( (var(--dot-size)/3) * -1 );
+            width: var(--dot-size);
+            height: var(--dot-size);
+            background-color: var(--color);
+            border-color: var(--shadow-color);
+            @apply absolute rounded-full border-2;
+        }
+    }
+}
