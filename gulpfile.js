@@ -7,10 +7,7 @@ const cleanCSS = require('gulp-clean-css');
 const uglify = require('gulp-uglify');
 const postcss = require('gulp-postcss');
 const purgecss = require('gulp-purgecss');
-var express = require('./server.js');
 const tailwindcss = require('tailwindcss');
-
-express;
 
 function css() {
     return gulp.src('./src/css/*.scss')

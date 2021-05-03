@@ -1,7 +1,7 @@
 <%- include('../partials/head') -%>
 
 <div class="m-10">
-    <div class="timer" style="--rotation:0deg;">
+    <div class="timer" style="--rotation:0deg">
         <div class="pie shadow"></div>
         <div class="pie active"></div>
         <div class="marker">
@@ -9,8 +9,15 @@
         </div>
         <div class="inner">
             <span class="clock">00:00</span>
+            <span class="subText"></span>
         </div>
     </div>
+</div>
+
+<div class="mt-2">
+    <button id="startTimer">Start</button>
+    <button id="cancelTimer">Cancel</button>
+    <input id="loop"/>
 </div>
 
 <%- include('../partials/footer') -%>
