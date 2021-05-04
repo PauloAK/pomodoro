@@ -42,6 +42,7 @@ Nesta etapa será a criação da base geral da aplicação.
 - [x] Sistema de timers para os períodos de tempo.
 - [x] Notificações e sons de alerta.
 - [x] Layout
+
 ![Versão 1](/docs/v1.png)
 
 #### Etapa 2 [Atual]
