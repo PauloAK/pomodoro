@@ -2,7 +2,9 @@
 ## Técnica Pomodoro
 ### O que é?
 A Técnica de Pomodoro é um método para aumentar o foco e produtividade, utilizando-se da estratégia de períodos de tempo, dividindo os em períodos de foco e pausas.
-Esta técnica foi criada em 1980 por Francesco Cirillo, onde utilizou um cronômetro em forma de tomate para gerenciar estes períodos, dessa forma, a técnica acabou derivando o nome da fruta em italiano, *pomodoro*. 
+Esta técnica foi criada em 1980 por Francesco Cirillo, onde utilizou um cronômetro em forma de tomate para gerenciar estes períodos, dessa forma, a técnica acabou derivando o nome da fruta em italiano, *pomodoro*.
+![Pomodoro Timer](/docs/tomato-timer.png)
+
 ### Como funciona?
 Como descrito acima, a técnica é definida no gerenciamento de períodos de tempo, podemos separar em 3 tipos diferentes de períodos.
 
@@ -34,14 +36,15 @@ Neste projeto busco utilizar algumas tecnologias que não aplico tanto no dia-a-
 - MongoDB
 
 ### Etapas
-#### Etapa 1 [Atual]
+#### Etapa 1
 Nesta etapa será a criação da base geral da aplicação.
 - [x] Estrutura da aplicação NodeJS.
 - [x] Sistema de timers para os períodos de tempo.
-- [ ] Notificações e sons de alerta.
-- [ ] Layout
+- [x] Notificações e sons de alerta.
+- [x] Layout
+![Versão 1](/docs/v1.png)
 
-#### Etapa 2
+#### Etapa 2 [Atual]
 Nesta etapa será expandida a aplicação, focando no gerenciamento de atividades.
 - [ ] Lista de tarefas (To-do List)
 - [ ] Kanban (A Fazer, Hoje, Em progresso, Pronto)

@@ -4,9 +4,9 @@ const LONG_BREAK = 'long-break';
 const IDLE = 'idle';
 
 const TIMERS = {
-    [FOCUS]: .2 * 60,
-    [SHORT_BREAK]: .2 * 60,
-    [LONG_BREAK]: .2 * 60
+    [FOCUS]: 25 * 60,
+    [SHORT_BREAK]: 5 * 60,
+    [LONG_BREAK]: 15 * 60
 };
 
 const TIMER_LABELS = {
@@ -36,6 +36,10 @@ setTimerSubText(getCurrentTimerText());
 window.timerInterval = setInterval( () => {
     tickTimer();
 }, 100);
+
+Notification.requestPermission().then(function(result) {
+    console.log(result);
+});
 /* END INIT */
 
 
@@ -68,6 +72,9 @@ function finishTimer()
     startMoment = null;
     isRunning = false;
     currentLoop++;
+    let notification = new Notification(`${TIMER_LABELS[getCurrentTimerIdentifier(currentLoop-1)]} [Completed]`, {
+        body: `${TIMER_TITLES[getCurrentTimerIdentifier()]} ${TIMERS[getCurrentTimerIdentifier()]/60} minutes`
+    });
     setTimerText('Finished!');
     setTimerSubText('Continuing...');
     toggleRingTransition(false);
@@ -204,9 +211,10 @@ function playAlarm()
 }
 
 // Getters
-function getCurrentTimerIdentifier()
+function getCurrentTimerIdentifier(customLoopID = null)
 {
-    return currentLoop % 10 == 0 ? LONG_BREAK : (currentLoop % 2 === 0 ? SHORT_BREAK : FOCUS);
+    let loop = customLoopID ? customLoopID : currentLoop;
+    return loop % 10 == 0 ? LONG_BREAK : (loop % 2 === 0 ? SHORT_BREAK : FOCUS);
 }
 
 function getCurrentTimer()

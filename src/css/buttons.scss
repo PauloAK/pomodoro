@@ -5,6 +5,10 @@
         @apply border-red-200 bg-red-400 text-white hover:bg-red-500;
     }
 
+    &.bt-gray {
+        @apply border-gray-400 bg-gray-300 text-gray-800 hover:bg-gray-400;
+    }
+
     &.bt-sm {
         @apply px-2 text-sm;
     }
