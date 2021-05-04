@@ -37,16 +37,23 @@ class Timer {
         this._startMoment = null;
         this._isRunning = false;
         this._isPaused = false;
+        this._acumulatedPausedSeconds = 0;
     }
 
     elapsedSeconds() : number
     {
-        return this._seconds - this.remainingSeconds() - this._acumulatedPausedSeconds;
+        return this._seconds - this.remainingSeconds();
     }
 
     remainingSeconds() : number
     {
-        return this.timeDiff(this._startMoment) - this._acumulatedPausedSeconds;
+        let seconds = this._seconds - (this.timeDiff(this._startMoment) - this.calculatePausedTime());
+        return seconds >= 0 ? seconds : 0;
+    }
+
+    calculatePausedTime() : number
+    {
+        return this._acumulatedPausedSeconds + ( this.isPaused() ? this.timeDiff(this._pauseMoment) : 0);
     }
 
     remainingTimeFormated() : string
@@ -78,6 +85,8 @@ class Timer {
 
     timeDiff(moment : Date) : number
     {
+        if (!moment)
+            return 0;
         return Math.abs((new Date().getTime() - moment.getTime()) / 1000 );
     }
 
@@ -89,5 +98,10 @@ class Timer {
     isRunning() : boolean
     {
         return this._isRunning && !this._isPaused;
+    }
+
+    isFinished() : boolean
+    {
+        return this.isRunning() && !this.isPaused() && this.elapsedSeconds() >= this._seconds;
     }
 }

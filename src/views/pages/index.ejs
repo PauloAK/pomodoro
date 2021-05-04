@@ -41,13 +41,19 @@
         </div>
 
         <div class="my-2 w-full flex justify-center gap-2">
-            <button class="bt bt-red" id="startTimer" onClick="startTimer()">
+            <button class="bt bt-green" id="startTimer" onClick="startTimer()">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
                 </svg>
                 Start
             </button>
-            <button class="bt bt-red" id="cancelTimer" onClick="cancelTimer()">
+            <button class="bt bt-blue" id="pauseTimer" onClick="pauseTimer()" disabled>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+                Pause
+            </button>
+            <button class="bt bt-red" id="cancelTimer" onClick="cancelTimer()" disabled>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
                 </svg>
@@ -56,7 +62,7 @@
         </div>
 
         <div class="my-2 w-full flex justify-center">
-            <button class="bt bt-gray bt-sm" id="nextLoop" onClick="nextLoop()">
+            <button class="bt bt-gray bt-sm" id="nextLoop" onClick="nextTimer()">
                 Next
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />

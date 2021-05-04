@@ -3,25 +3,32 @@ class Main {
     onTick : Function = () => {
         this.updateUI();
     };
+    onFinish : Function = () => {
+        this.playAlarm();
+        this.notifyEndSection();
+        window.setTimeout( () => {
+            this.pomodoro.start();
+        }, 1000);
+    };
     focusSection : ISection = <ISection>{
         identifier: 'focus',
-        seconds: 25 * 60,
+        seconds: .25 * 60,
         label: 'Focus',
         title: 'Focus Time!'
     };
     shortBreakSection : ISection = <ISection>{
         identifier: 'short-break',
-        seconds: 5 * 60,
+        seconds: .5 * 60,
         label: 'Short Break',
         title: 'Take a Short Break!'
     };
     longBreakSection : ISection = <ISection>{
         identifier: 'long-break',
-        seconds: 15 * 60,
+        seconds: .15 * 60,
         label: 'Long Break',
         title: 'Take a Long Break!'
     };
-    pomodoro = new Pomodoro(this.focusSection, this.shortBreakSection, this.longBreakSection, this.onTick);
+    pomodoro = new Pomodoro(this.focusSection, this.shortBreakSection, this.longBreakSection, this.onTick, this.onFinish);
 
     updateUI(): void
     {
@@ -110,5 +117,21 @@ class Main {
     updateTimerText() : void
     {
         (<HTMLElement>document.getElementsByClassName('clock')[0]).innerText = this.pomodoro.remainingTime();
+    }
+
+    playAlarm()
+    {
+        var audio = new Audio('/audio/alarm.mp3');
+        audio.play();
+    }
+
+    notifyEndSection()
+    {
+        let endedSection = this.pomodoro.getSection( this.pomodoro.currentSectionID() - 1 );
+        let currentSection = this.pomodoro.getSection();
+
+        new Notification(`${endedSection.label} [Completed]`, {
+            body: `${currentSection.title} ${currentSection.seconds/60} minutes`
+        });
     }
 }

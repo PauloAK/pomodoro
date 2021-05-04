@@ -6,14 +6,17 @@ class Pomodoro {
     _currentSectionID : number = 1;
     _timer : Timer = null;
     _onTick : Function = null;
+    _onFinish : Function = null;
 
-    constructor (focus: ISection, shortBreak: ISection, longBreak: ISection, onTick: Function = null)
+    constructor (focus: ISection, shortBreak: ISection, longBreak: ISection, onTick: Function = null, onFinish: Function = null)
     {
         this._focus = focus;
         this._shortBreak = shortBreak;
         this._longBreak = longBreak;
-
-        this._timer = new Timer(this.getSection());
+        this._onTick = onTick;
+        this._onFinish = onFinish;
+        this._timer = new Timer(this.getSection().seconds);
+        this.tick();
     }
 
     currentPomodoro() : number
@@ -28,16 +31,19 @@ class Pomodoro {
     }
 
     tick() {
-        if (this._onTick == null)
-            return;
         (window as any).pomodoroTick = setInterval( () => {
-            this._onTick();
-        }, 500);
+            if (this.timer().isFinished()){
+                this.next();
+                if (this._onFinish != null)
+                    this._onFinish();
+            }
+            if (this._onTick != null)
+                this._onTick();
+        }, 100);        
     }
 
     start()
     {
-        
         this._timer.start();
     }
 
@@ -54,6 +60,7 @@ class Pomodoro {
     next()
     {
         this._currentSectionID++;
+        this._timer = new Timer(this.getSection().seconds);
         this.reset();
     }
 

@@ -1,35 +1,4 @@
-const FOCUS = 'focus';
-const SHORT_BREAK = 'short-break';
-const LONG_BREAK = 'long-break';
-const IDLE = 'idle';
-
-const TIMERS = {
-    [FOCUS]: 25 * 60,
-    [SHORT_BREAK]: 5 * 60,
-    [LONG_BREAK]: 15 * 60
-};
-
-const TIMER_LABELS = {
-    [FOCUS]: 'Focus',
-    [SHORT_BREAK]: 'Short Break',
-    [LONG_BREAK]: 'Long Break'
-};
-
-const TIMER_TITLES = {
-    [FOCUS]: 'Focus Time!',
-    [SHORT_BREAK]: 'Take a Short Break!',
-    [LONG_BREAK]: 'Take a Long Break!',
-};
-
-var currentLoop = 1;
-var isRunning = false;
-var startMoment = null;
-var defaultTitle = document.getElementsByTagName('title')[0].innerText;
-var currentPomodoro = () => {
-    return Math.abs(currentLoop / 10); // Takes 8 loops to completed a pomodoro
-}
-
-/* INIT */
+/*
 setTimerText( secondsToTimer(getCurrentTimer() || 0) );
 setTimerSubText(getCurrentTimerText());
 
@@ -40,7 +9,6 @@ window.timerInterval = setInterval( () => {
 Notification.requestPermission().then(function(result) {
     console.log(result);
 });
-/* END INIT */
 
 
 function startTimer()
@@ -72,9 +40,7 @@ function finishTimer()
     startMoment = null;
     isRunning = false;
     currentLoop++;
-    let notification = new Notification(`${TIMER_LABELS[getCurrentTimerIdentifier(currentLoop-1)]} [Completed]`, {
-        body: `${TIMER_TITLES[getCurrentTimerIdentifier()]} ${TIMERS[getCurrentTimerIdentifier()]/60} minutes`
-    });
+    let notification = 
     setTimerText('Finished!');
     setTimerSubText('Continuing...');
     toggleRingTransition(false);
@@ -120,56 +86,7 @@ function updateUI(maxTime, currentTime)
     else
         setTitle(defaultTitle);
 
-    document.getElementsByClassName('timer')[0].classList = `timer ${currentTimerID}`;
-    switch (currentTimerID) {
-        case FOCUS:
-            if ((currentLoop + 1) % 10 == 0) {
-                document.getElementById('labelFocus2').style.setProperty('--fill', `${currentLoopProgress}%`);
-                document.getElementById('labelFocus2').classList = 'label active';
-
-                document.getElementById('labelFocus').style.setProperty('--fill', `100%`);
-                document.getElementById('labelFocus').classList = 'label completed';
-
-                document.getElementById('labelShort').style.setProperty('--fill', `100%`);
-                document.getElementById('labelShort').classList = 'label completed';
-            } else {
-                document.getElementById('labelFocus').style.setProperty('--fill', `${currentLoopProgress}%`);
-                document.getElementById('labelFocus').classList = 'label active';
-
-                document.getElementById('labelShort').style.setProperty('--fill', `0%`);
-                document.getElementById('labelShort').classList = 'label';
-
-                document.getElementById('labelFocus2').style.setProperty('--fill', `0%`);
-                document.getElementById('labelFocus2').classList = 'label';
-            }
-
-            document.getElementById('labelLong').style.setProperty('--fill', `0%`);
-            document.getElementById('labelLong').classList = 'label';
-            break;
-        case SHORT_BREAK:
-            document.getElementById('labelFocus').style.setProperty('--fill', `100%`);
-            document.getElementById('labelFocus').classList = 'label completed';
-
-            document.getElementById('labelShort').style.setProperty('--fill', `${currentLoopProgress}%`);
-            document.getElementById('labelShort').classList = 'label active';
-
-            document.getElementById('labelLong').style.setProperty('--fill', `0%`);
-            document.getElementById('labelLong').classList = 'label';
-            break;
-        case LONG_BREAK:
-            document.getElementById('labelFocus').style.setProperty('--fill', `100%`);
-            document.getElementById('labelFocus').classList = 'label completed';
-
-            document.getElementById('labelShort').style.setProperty('--fill', `100%`);
-            document.getElementById('labelShort').classList = 'label completed';
-
-            document.getElementById('labelFocus2').style.setProperty('--fill', `100%`);
-            document.getElementById('labelFocus2').classList = 'label completed';
-
-            document.getElementById('labelLong').style.setProperty('--fill', `${currentLoopProgress}%`);
-            document.getElementById('labelLong').classList = 'label active';
-            break;
-    }
+    
 }
 
 // Helpers
@@ -204,11 +121,7 @@ function toggleRingTransition(enabled = true)
         document.getElementsByClassName('marker')[0].classList.add('no-transition');
 }
 
-function playAlarm()
-{
-    var audio = new Audio('/audio/alarm.mp3');
-    audio.play();
-}
+
 
 // Getters
 function getCurrentTimerIdentifier(customLoopID = null)
@@ -246,4 +159,4 @@ function setTimerSubText(text)
 function setTitle(text)
 {
     document.getElementsByTagName('title')[0].innerText = text;
-}
+}*/
