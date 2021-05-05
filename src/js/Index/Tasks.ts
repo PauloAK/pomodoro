@@ -9,17 +9,17 @@ class Tasks {
     getTask(identifier : string) : ITask
     {
         return this.tasks.filter( (task : ITask) => {
-            task.identifier == identifier;
+            return task.identifier == identifier;
         }).shift();
     }
 
     editTask(identifier : string, editedTask : ITask)
     {
         this.tasks = this.tasks.map( (task : ITask) => {
-            if (task.identifier == identifier){
-                task = editedTask;
-            }
-            return task;
+            if (task.identifier == identifier)
+                return editedTask;
+            else
+                return task;
         });
     }
 
@@ -33,5 +33,22 @@ class Tasks {
     getTasks() : Array<ITask>
     {
         return this.tasks;
+    }
+
+    generateNewTask() : ITask
+    {
+        let task = <ITask>{};
+        task.identifier = this.makeID();
+        return task;
+    }
+
+    makeID() {
+        var result = [];
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < 20; i++ ) {
+            result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+        }
+        return result.join('');
     }
 }

@@ -1,27 +1,39 @@
+button:focus {
+    outline: none !important;
+}
+
 .bt {
-    @apply px-4 py-1 rounded shadow-lg border border-gray-200 text-gray-600 flex gap-1 items-center justify-center outline-none;
+    @apply px-4 py-1 rounded-lg shadow-md text-gray-600 flex gap-1 items-center justify-center font-medium text-base focus:ring-2 focus:ring-offset-2 transition ease-in duration-200;
 
     &.bt-red {
-        @apply border-red-200 bg-red-400 text-white hover:bg-red-500;
+        @apply bg-red-400 text-white hover:bg-red-500 focus:ring-red-500 focus:ring-offset-red-200;
     }
 
     &.bt-gray {
-        @apply border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200;
+        @apply bg-gray-200 text-gray-600 hover:bg-gray-300 focus:ring-gray-500 focus:ring-offset-gray-200;
+    }
+
+    &.bt-white {
+        @apply bg-white text-gray-500 hover:bg-gray-100 focus:ring-gray-500 focus:ring-offset-gray-200;
     }
 
     &.bt-green {
-        @apply border-green-200 bg-green-400 text-white hover:bg-green-500;
+        @apply bg-green-400 text-white hover:bg-green-500 focus:ring-green-500 focus:ring-offset-green-200;
     }
 
     &.bt-blue {
-        @apply border-blue-200 bg-blue-400 text-white hover:bg-blue-500;
+        @apply bg-blue-400 text-white hover:bg-blue-500 focus:ring-blue-500 focus:ring-offset-blue-200;
     }
 
     &.bt-sm {
-        @apply px-2 text-sm;
+        @apply px-3 text-sm;
     }
 
     &[disabled] {
         @apply opacity-25 cursor-not-allowed;
     }
+}
+
+.bt-add-task {
+    @apply w-full flex justify-center items-center border-2 border-gray-300 opacity-50 text-gray-400 py-3 rounded-xl border-dashed gap-2 font-medium hover:opacity-75;
 }

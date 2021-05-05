@@ -1,0 +1,45 @@
+<!-- Dialog (full screen) -->
+<div class="fixed top-0 left-0 flex items-center justify-center w-full h-full z-30 bg-gray-500 bg-opacity-75"x-show="isTaskFormModalOpen">
+
+    <!-- A basic modal dialog with title, body and one button to close -->
+    <div class="modal" @click.away="isTaskFormModalOpen = false">
+
+        <div class="text-left">
+            <h3 class="text-lg font-medium leading-6 text-gray-900">
+                <span :hidden="isEdit">
+                    Add Task
+                </span>
+                <span :hidden="!isEdit">
+                    Edit Task
+                </span>
+            </h3>
+
+            <div class="relative my-4">
+                <label for="title" class="text-gray-600">Title</label>
+                <input type="text" id="title" class="form-input" placeholder="Task Title" x-model="currentTask.title"/>
+            </div>
+
+            <div class="relative my-4">
+                <label for="description" class="text-gray-600">Description <span class="opacity-50 text-xs">(Optional)</span></label>
+                <textarea id="description" class="form-input" rows="3" placeholder="Task Description" x-model="currentTask.description"></textarea>
+            </div>
+            
+        </div>
+
+        <div class="w-full flex justify-end gap-2 mt-2 flex-wrap-reverse">
+            <button class="bt bt-red w-full md:w-auto" @click="isTaskFormModalOpen = false">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                </svg>
+                Close
+            </button>
+            <button class="bt bt-green w-full md:w-auto" @click="saveTask()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                Save
+            </button>
+        </div>
+
+    </div>
+</div>

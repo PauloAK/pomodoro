@@ -1,15 +1,35 @@
-<div class="task-container" x-data="taskManager()">
-    <div class="w-full mb-2 text-center">
+<div class="task-container px-2" x-data="taskManager()">
+    <!--
+        <div class="w-full mb-2 text-center">
         <h2 class="text-2xl">Tasks</h2>
     </div>
+    -->
 
-    <div class="flex gap-2 justify-center" >
+    <div class="flex gap-2 justify-center flex-wrap">
         <template x-for="queue in queues">
-            <div class="w-1/3 p-2 border border-gray-100 shadow rounded flex-grow">
+            <div class="w-1/3 shadow-lg rounded-2xl bg-white p-2 border border-gray-100 flex-grow flex-wrap">
                 <div class="w-full text-center">
-                    <h3 class="text-xl mb-2" x-text="queue"></h3>
+                    <h3 class="text-lg mb-2" x-text="queue"></h3>
+                    <div class="tasks">
+                        <button class="bt-add-task" type="button" @click="editTask(null)">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 14v6m-3-3h6M6 10h2a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2zm10 0h2a2 2 0 002-2V6a2 2 0 00-2-2h-2a2 2 0 00-2 2v2a2 2 0 002 2zM6 20h2a2 2 0 002-2v-2a2 2 0 00-2-2H6a2 2 0 00-2 2v2a2 2 0 002 2z" />
+                            </svg>
+                            Add Task
+                        </button>
+                    </div>
                 </div>
+
+                <template x-for="task in taskManager.getTasks()">
+                    <div x-text="task.title" class="py-2 px-4 rounded-lg shadow-md bg-white my-2 w-full lg:w-1/2" @click="editTask(task.identifier)">
+
+                    </div>
+                </template>
             </div>
         </template>
     </div>
+
+    <%- include('./task-form-modal') -%>
+
+
 </div>

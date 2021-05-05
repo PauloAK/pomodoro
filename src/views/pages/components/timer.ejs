@@ -1,11 +1,17 @@
 <div class="timer-container">
     <div class="my-2 w-full flex justify-center items-center gap-1 text-gray-400" id="cicleLabels">
         (
-            <span id="labelFocus" class="label active" style="--fill:0%">Focus Time</span>
+            <span id="labelFocus" class="label active" style="--fill:0%">
+                <span class="white">Focus Timer</span>
+                <span class="black">Focus Timer</span>
+            </span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
             </svg>
-            <span id="labelShort" class="label" style="--fill:0%">Short Break</span>
+            <span id="labelShort" class="label" style="--fill:0%">
+                <span class="white">Short Break</span>
+                <span class="black">Short Break</span>
+            </span>
         ) x 4
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
@@ -57,7 +63,7 @@
     </div>
 
     <div class="my-2 w-full flex justify-center">
-        <button class="bt bt-gray bt-sm" id="nextLoop" onClick="nextTimer()">
+        <button class="bt bt-white" id="nextLoop" onClick="nextTimer()">
             Next
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />

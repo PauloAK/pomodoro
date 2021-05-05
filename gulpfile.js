@@ -16,7 +16,17 @@ function css() {
         .pipe(postcss([
             tailwindcss('./tailwind.config.js')
         ]))
-        .pipe(purgecss({ content: ['./src/**/*.ejs', './src/**/*.scss'] }))
+        .pipe(purgecss({ 
+            content: ['./src/**/*.ejs', './src/**/*.scss'],
+            extractors: [
+                {
+                    extractor: content => {
+                        return content.match(/[A-z0-9-:\/]+/g) || [];
+                    },
+                    extensions: ['scss', 'ejs']
+                }
+            ]
+        }))
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(concat('app.css'))
         .pipe(gulp.dest('./public/css'));
@@ -43,7 +53,7 @@ function watch() {
     gulp.watch('./src/css/*.scss', css);
     gulp.watch('./src/**/*.js', js);
     gulp.watch('./src/**/*.ts', ts);
-    gulp.watch('./src/views/**/*.ejs', css);
+    gulp.watch('./src/**/*.ejs', css);
 }
 
 gulp.task(css);

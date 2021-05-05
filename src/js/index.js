@@ -47,8 +47,34 @@ function setDisabled(id, isDisabled = true)
 
 function taskManager() {
     return {
+        isTaskFormModalOpen: false,
+        taskManager: new Tasks(),
+        currentTask: {},
+        isEdit: false,
+        editTask(identifier = null) {
+            console.log(identifier);
+            if (!identifier) {
+                this.isEdit = false;
+                this.currentTask = this.taskManager.generateNewTask();
+            } else {
+                this.isEdit = true;
+                this.currentTask = this.taskManager.getTask(identifier);
+            }
+
+            this.isTaskFormModalOpen = true;
+        },
+        saveTask() {
+            console.log(this.currentTask);
+            if (this.isEdit) {
+                this.taskManager.editTask(this.currentTask.identifie, this.currentTask);
+            } else {
+                this.taskManager.addTask(this.currentTask);
+            }
+            this.isTaskFormModalOpen = false;
+        },
         queues: [
             "To Do",
+            "Tomorrow",
             "Doing",
             "Done"
         ]
