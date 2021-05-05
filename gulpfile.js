@@ -41,8 +41,8 @@ function js() {
 
 function watch() {
     gulp.watch('./src/css/*.scss', css);
-    gulp.watch('./src/js/**/*.js', js);
-    gulp.watch('./src/js/**/*.ts', ts);
+    gulp.watch('./src/**/*.js', js);
+    gulp.watch('./src/**/*.ts', ts);
     gulp.watch('./src/views/**/*.ejs', css);
 }
 

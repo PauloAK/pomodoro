@@ -1,14 +1,15 @@
-<div class="task-container" x-data="{}">
+<div class="task-container" x-data="taskManager()">
     <div class="w-full mb-2 text-center">
-        <h1 class="text-2xl">Tasks</h1>
+        <h2 class="text-2xl">Tasks</h2>
     </div>
 
-    <div class="flex gap-2 justify-center" x-if="false">
-        <div class="w-1/3 p-4 border border-gray-100 shadow rounded flex-grow">
-        </div>
-        <div class="w-1/3 p-4 border border-gray-100 shadow rounded flex-grow">
-        </div>
-        <div class="w-1/3 p-4 border border-gray-100 shadow rounded flex-grow">
-        </div>
+    <div class="flex gap-2 justify-center" >
+        <template x-for="queue in queues">
+            <div class="w-1/3 p-2 border border-gray-100 shadow rounded flex-grow">
+                <div class="w-full text-center">
+                    <h3 class="text-xl mb-2" x-text="queue"></h3>
+                </div>
+            </div>
+        </template>
     </div>
 </div>

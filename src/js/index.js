@@ -44,3 +44,13 @@ function setDisabled(id, isDisabled = true)
     else
         document.getElementById(id).setAttribute('disabled', isDisabled);
 }
+
+function taskManager() {
+    return {
+        queues: [
+            "To Do",
+            "Doing",
+            "Done"
+        ]
+    }
+};
