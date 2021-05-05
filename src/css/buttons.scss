@@ -6,10 +6,22 @@
     }
 
     &.bt-gray {
-        @apply border-gray-400 bg-gray-300 text-gray-800 hover:bg-gray-400;
+        @apply border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200;
+    }
+
+    &.bt-green {
+        @apply border-green-200 bg-green-400 text-white hover:bg-green-500;
+    }
+
+    &.bt-blue {
+        @apply border-blue-200 bg-blue-400 text-white hover:bg-blue-500;
     }
 
     &.bt-sm {
         @apply px-2 text-sm;
+    }
+
+    &[disabled] {
+        @apply opacity-25 cursor-not-allowed;
     }
 }
