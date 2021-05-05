@@ -19,6 +19,14 @@ function cancelTimer()
 function pauseTimer()
 {
     main.pomodoro.pause();
+    if (main.pomodoro.timer().isPaused()){
+        document.getElementById('pauseTimer_Pause').classList.value = 'hidden';
+        document.getElementById('pauseTimer_Unpause').classList.value = '';
+    } else {
+        document.getElementById('pauseTimer_Pause').classList.value = '';
+        document.getElementById('pauseTimer_Unpause').classList.value = 'hidden';
+    }
+
 }
 
 function nextTimer()

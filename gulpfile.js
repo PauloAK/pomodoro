@@ -19,24 +19,24 @@ function css() {
         .pipe(purgecss({ content: ['./src/**/*.ejs', './src/**/*.scss'] }))
         .pipe(cleanCSS({compatibility: 'ie8'}))
         .pipe(concat('app.css'))
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest('./public/css'));
 }
 
 function ts() {
-    return gulp.src('./src/js/**/*.ts')
-        .pipe(gulpTS())
+    return gulp.src(['./src/js/**/*.ts', './node_modules/alpinejs/dist/alpine.js', './node_modules/sortablejs/Sortable.js'])
+        .pipe(gulpTS({allowJs: true}))
         .pipe(babel())
         .pipe(concat('vendor.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest('./public/js'));
 }
 
 function js() {
     return gulp.src('./src/js/**/*.js')
         .pipe(babel())
-        .pipe(concat('app.js'))
+        //.pipe(concat('app.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('./public'));
+        .pipe(gulp.dest('./public/js'));
 }
 
 function watch() {

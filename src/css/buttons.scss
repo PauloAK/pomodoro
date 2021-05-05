@@ -6,7 +6,7 @@
     }
 
     &.bt-gray {
-        @apply border-gray-400 bg-gray-300 text-gray-800 hover:bg-gray-400;
+        @apply border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200;
     }
 
     &.bt-green {
@@ -22,6 +22,6 @@
     }
 
     &[disabled] {
-        opacity: 0.4;
+        @apply opacity-25 cursor-not-allowed;
     }
 }
