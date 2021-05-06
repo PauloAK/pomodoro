@@ -51,11 +51,12 @@ function taskManager() {
         taskManager: new Tasks(),
         currentTask: {},
         isEdit: false,
-        editTask(identifier = null) {
+        editTask(identifier = null, queue = null) {
             console.log(identifier);
             if (!identifier) {
                 this.isEdit = false;
                 this.currentTask = this.taskManager.generateNewTask();
+                this.currentTask.queue = queue;
             } else {
                 this.isEdit = true;
                 this.currentTask = this.taskManager.getTask(identifier);
@@ -74,7 +75,6 @@ function taskManager() {
         },
         queues: [
             "To Do",
-            "Tomorrow",
             "Doing",
             "Done"
         ]

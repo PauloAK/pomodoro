@@ -61,4 +61,4 @@ gulp.task(js);
 gulp.task(ts);
 gulp.task(watch);
 
-gulp.task('default', gulp.series(css, ts, js, watch));
+gulp.task('default', gulp.parallel(css, ts, js, watch));

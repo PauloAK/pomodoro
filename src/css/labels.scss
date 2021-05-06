@@ -21,7 +21,7 @@
                 @apply text-white;
             }
             &.black {
-                @apply text-gray-400 absolute flex items-center justify-center left-0 right-0 top-0 bottom-0;
+                @apply text-gray-500 absolute flex items-center justify-center left-0 right-0 top-0 bottom-0;
                 clip-path: inset(0 0 0 var(--fill));
             }
         }
