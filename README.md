@@ -45,12 +45,14 @@ Nesta etapa será a criação da base geral da aplicação.
 
 ![Versão 1](/docs/v1.png)
 
-#### Etapa 2 [Atual]
+#### Etapa 2
 Nesta etapa será expandida a aplicação, focando no gerenciamento de atividades.
-- [ ] Lista de tarefas (To-do List)
-- [ ] Kanban (A Fazer, Hoje, Em progresso, Pronto)
+- [x] Lista de tarefas (To-do List)
+- [x] Kanban (A Fazer, Hoje, Em progresso, Pronto)
 
-#### Etapa 3
+![Versão 1.1](/docs/v1_1.png)
+
+#### Etapa 3 [Atual]
 Nesta etapa adicionaremos a possibilidade de configurar itens do sistema.
 - [ ] Configurar o tempo de cada período.
 - [ ] Configurar colunas do Kanban.

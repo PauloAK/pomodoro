@@ -1,20 +1,54 @@
+html, body {
+    font-family: 'Poppins', sans-serif !important;
+    @apply bg-gray-200;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import "timer.scss";
-@import "buttons.scss";
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;800&display=swap');
-
-html, body {
-    //font-family: 'Poppins';
-    @apply bg-gray-200;
-}
+@tailwind screens;
 
 .no-transition {
     -webkit-transition: none !important;
     -moz-transition: none !important;
     -o-transition: none !important;
     transition: none !important;
+}
+
+.modal {
+    @apply h-auto mx-2 text-left shadow-lg rounded-2xl p-4 bg-white w-full md:w-1/2 lg:w-2/6 xl:w-1/4 md:mx-0;
+}
+
+.form-input {
+    @apply rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-3 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-gray-600 focus:border-transparent resize-y;
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+.task {
+    @apply rounded-lg shadow-md border border-gray-200 bg-white my-2 w-full flex-1 z-10;
+    .content {
+        @apply py-2 px-4 border-b border-gray-200;
+    }
+    .footer {
+        @apply p-2 flex justify-between bg-gray-100;
+
+        .tags {
+            @apply flex gap-1;
+        }
+
+        .buttons {
+            @apply flex gap-1 justify-end;
+        }
+    }
+
+    &.sortable-choosen {
+        @apply bg-red-500 pointer-events-none;
+    }
+}
+
+.hidden {
+    display: none !important;
 }

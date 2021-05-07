@@ -1,5 +1,8 @@
 interface ITask {
+    identifier : string;
     title : string;
     description ?: string;
-    closed : boolean; 
+    queue : string; 
+    closed : boolean;
+    order ?: number;
 }

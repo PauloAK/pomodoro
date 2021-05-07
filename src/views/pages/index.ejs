@@ -3,16 +3,14 @@
 <script src="/js/index.js"></script>
 
 <div class="container mx-auto text-center my-4 flex-shrink flex-wrap flex justify-center">
-    <div class="rounded bg-white p-4 shadow">
+    <div class="shadow-lg rounded-2xl bg-white p-4">
         <div class="w-full mb-4 text-center">
             <h1 class="text-3xl">Pomodoro Timer</h1>
         </div>
         <%- include('../pages/components/timer') -%>
     </div>
-
-    <div class="w-full bg-white rounded p-4 shadow mt-4">
-        <%- include('../pages/components/task-manager') -%>
-    </div>
 </div>
+
+<%- include('../pages/components/task-manager') -%>
 
 <%- include('../partials/footer') -%>

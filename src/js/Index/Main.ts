@@ -12,19 +12,19 @@ class Main {
     };
     focusSection : ISection = <ISection>{
         identifier: 'focus',
-        seconds: .25 * 60,
+        seconds: 25 * 60,
         label: 'Focus',
         title: 'Focus Time!'
     };
     shortBreakSection : ISection = <ISection>{
         identifier: 'short-break',
-        seconds: .5 * 60,
+        seconds: 5 * 60,
         label: 'Short Break',
         title: 'Take a Short Break!'
     };
     longBreakSection : ISection = <ISection>{
         identifier: 'long-break',
-        seconds: .15 * 60,
+        seconds: 15 * 60,
         label: 'Long Break',
         title: 'Take a Long Break!'
     };
