@@ -60,33 +60,75 @@ function taskManager() {
                 this.isEdit = true;
                 this.currentTask = this.taskManager.getTask(identifier);
             }
-
             this.isTaskFormModalOpen = true;
+        },
+        removeTask(identifier) {
+            this.taskManager.removeTask(identifier);
+            this.currentTask = {};
+            this.updateTaskList();
         },
         saveTask() {
             if (this.isEdit) {
-                this.taskManager.editTask(this.currentTask.identifie, this.currentTask);
+                this.taskManager.editTask(this.currentTask.identifier, this.currentTask);
             } else {
                 this.taskManager.addTask(this.currentTask);
             }
             this.currentTask = {};
             this.isTaskFormModalOpen = false;
+            this.updateTaskList();
+        },
+        storeTasks() {
+            window.localStorage.setItem('tasks', JSON.stringify(this.taskManager.getTasks()) );
+        },
+        loadTasks() {
+            this.taskManager.setTasks( JSON.parse(window.localStorage.getItem('tasks')) || [] );
+        },
+        updateTaskList() {
+            setTimeout( () => {
+                Array.from(document.getElementsByClassName('queue')).forEach(queue => {
+                    let queueName = queue.getAttribute('queue');
+                    let order = 0;
+                    Array.from(queue.getElementsByClassName('task')).forEach(task => {
+                        order++;
+                        let identifier = task.getAttribute('id');
+                        task = this.taskManager.getTask(identifier);
+                        task.queue = queueName;
+                        task.order = order;
+                        this.taskManager.editTask(identifier, task);
+                    });
+                });
+                this.storeTasks();
+            }, 200);
         },
         queues: [
             "To Do",
             "Doing",
             "Done"
         ],
-        initQueues() {
+        init() {
+            this.loadTasks();
             setTimeout( () => {
                 Array.from(document.getElementsByClassName('queue')).forEach(queue => {
                     new Sortable(queue, {
                         group: "queues",
                         draggable: ".task",
-                        animation: 100
+                        animation: 100,
+                        onAdd: function (evt) {
+                            updateTaskList();
+                        },
+                        onUpdate: function (evt) {
+                            updateTaskList();
+                        },
+                        onSort: function (evt) {
+                            updateTaskList();
+                        },
                     });
                 });
             }, 250);
         }
     }
 };
+
+function updateTaskList() {
+    document.querySelector('[x-data="taskManager()"]').__x.getUnobservedData().updateTaskList();
+}

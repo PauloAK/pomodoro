@@ -4,4 +4,5 @@ interface ITask {
     description ?: string;
     queue : string; 
     closed : boolean;
+    order ?: number;
 }

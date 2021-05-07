@@ -23,16 +23,21 @@ class Tasks {
         });
     }
 
-    removeTask(task : ITask) : void
+    removeTask(identifier : string) : void
     {
-        this.tasks = this.tasks.filter( (_task : ITask) => {
-            return task != _task;
+        this.tasks = this.tasks.filter( (task : ITask) => {
+            return task.identifier != identifier;
         });
     }
 
     getTasks() : Array<ITask>
     {
-        return this.tasks;
+        return this.tasks.sort((a, b) => (a.order || 0) - (b.order || 0));
+    }
+
+    setTasks(tasks : Array<ITask>) : void
+    {
+        this.tasks = tasks;
     }
 
     generateNewTask() : ITask
