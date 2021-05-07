@@ -3,5 +3,5 @@ interface ITask {
     title : string;
     description ?: string;
     queue : string; 
-    closed : boolean; 
+    closed : boolean;
 }

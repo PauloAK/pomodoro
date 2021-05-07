@@ -52,7 +52,6 @@ function taskManager() {
         currentTask: {},
         isEdit: false,
         editTask(identifier = null, queue = null) {
-            console.log(identifier);
             if (!identifier) {
                 this.isEdit = false;
                 this.currentTask = this.taskManager.generateNewTask();
@@ -65,18 +64,29 @@ function taskManager() {
             this.isTaskFormModalOpen = true;
         },
         saveTask() {
-            console.log(this.currentTask);
             if (this.isEdit) {
                 this.taskManager.editTask(this.currentTask.identifie, this.currentTask);
             } else {
                 this.taskManager.addTask(this.currentTask);
             }
+            this.currentTask = {};
             this.isTaskFormModalOpen = false;
         },
         queues: [
             "To Do",
             "Doing",
             "Done"
-        ]
+        ],
+        initQueues() {
+            setTimeout( () => {
+                Array.from(document.getElementsByClassName('queue')).forEach(queue => {
+                    new Sortable(queue, {
+                        group: "queues",
+                        draggable: ".task",
+                        animation: 100
+                    });
+                });
+            }, 250);
+        }
     }
 };
